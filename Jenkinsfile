@@ -12,6 +12,14 @@ pipeline {
                     echo 'this is the main branch'
             }
         }
+	stage("test") {
+	   when {
+		expression { env.BRANCH_NAME == 'testing' }
+	   }
+	   steps {
+		echo 'this is a test branch'
+	   }
+	}
         stage('Wildcard Branch Check') {
             when {
                 branch 'feature/*' 
